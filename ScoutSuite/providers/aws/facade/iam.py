@@ -225,7 +225,8 @@ class IAMFacade(AWSBaseFacade):
         for statement in policy_document['Statement']:
             # Action or NotAction
             action_string = 'Action' if 'Action' in statement else 'NotAction'
-            if type(statement[action_string]) != list:
+            statement_action_string = statement[action_string]
+            if type(statement_action_string) != list:
                 statement[action_string] = [statement[action_string]]
             # Resource or NotResource
             resource_string = 'Resource' if 'Resource' in statement else 'NotResource'
